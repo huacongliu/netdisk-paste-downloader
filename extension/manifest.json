@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Netdisk Paste Downloader",
+  "version": "0.1.0",
+  "description": "Paste Baidu or Quark share text, auto extract link/code, and start the browser download flow.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://pan.baidu.com/*",
+    "https://*.baidu.com/*",
+    "https://pan.quark.cn/*",
+    "https://*.quark.cn/*",
+    "https://drive.uc.cn/*",
+    "https://*.uc.cn/*"
+  ],
+  "action": {
+    "default_title": "Netdisk Downloader",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://pan.baidu.com/*",
+        "https://*.baidu.com/*",
+        "https://pan.quark.cn/*",
+        "https://*.quark.cn/*",
+        "https://drive.uc.cn/*",
+        "https://*.uc.cn/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
